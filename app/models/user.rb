@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
 
   serialize :twitter_raw_data, Hash
 
+  geocoded_by :address
+  after_validation :geocode
+
   def with_oauth?
     provider.present? && uid.present?
   end

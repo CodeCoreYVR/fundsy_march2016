@@ -49,6 +49,6 @@ class CampaignsController < ApplicationController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:title, :body, :goal, :end_date)
+    params.require(:campaign).permit(:title, :body, :goal, :end_date, :address)
   end
 end

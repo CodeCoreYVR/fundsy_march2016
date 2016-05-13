@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :pledges, only: [:new, :create]
   end
 
+  resources :nearby_campaigns, only: [:index]
+
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :campaigns
