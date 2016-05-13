@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :users, only: [:new, :create]
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callbacks#twitter"
+
   resources :campaigns do
     resources :pledges, only: [:new, :create]
   end

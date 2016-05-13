@@ -36,6 +36,8 @@ gem "simple_form"
 
 gem 'active_model_serializers'
 
+gem 'omniauth-twitter'
+gem 'twitter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
