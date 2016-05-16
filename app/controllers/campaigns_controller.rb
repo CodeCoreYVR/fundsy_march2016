@@ -8,6 +8,7 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
+      CampaignGoalJob.set(wait_until: @campaign.end_date).perform_later(@campaign)
       redirect_to campaign_path(@campaign), notice: "Campaign created!"
     else
       flash[:alert] = "Problem!"
