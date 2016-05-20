@@ -1,5 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :find_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def new
     @campaign = Campaign.new
@@ -8,6 +9,7 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
+    @campaign.user = current_user
     if @campaign.save
       CampaignGoalJob.set(wait_until: @campaign.end_date).perform_later(@campaign)
       redirect_to campaign_path(@campaign), notice: "Campaign created!"

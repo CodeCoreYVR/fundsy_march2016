@@ -7,6 +7,10 @@
   <div>
     <div id="map" style='height: 400px;'></div>
   </div>
+
+  <% if @campaign.draft? %>
+    <%= link_to "Publish", campaign_publishings_path(@campaign), method: :patch, data: {confirm: "Are you sure you want to publish?"}, class: "btn btn-primary" %>
+  <% end %>
 </div>
 <div class="col-md-4">
   <% @campaign.rewards.each do |rew| %>

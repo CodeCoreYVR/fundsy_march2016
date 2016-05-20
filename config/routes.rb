@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :campaigns do
     resources :pledges, only: [:new, :create]
+    resources :publishings, only: [] do
+      patch :update, on: :collection
+    end
   end
 
   resources :nearby_campaigns, only: [:index]
