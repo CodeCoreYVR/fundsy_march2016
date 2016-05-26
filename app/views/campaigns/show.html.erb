@@ -8,6 +8,13 @@
     <div id="map" style='height: 400px;'></div>
   </div>
 
+  <h2>Pledge</h2>
+  <%= simple_form_for [@campaign, @pledge] do |f| %>
+    <%= f.input :amount %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+  <hr />
+
   <% if @campaign.draft? %>
     <%= link_to "Publish", campaign_publishings_path(@campaign), method: :patch, data: {confirm: "Are you sure you want to publish?"}, class: "btn btn-primary" %>
   <% end %>

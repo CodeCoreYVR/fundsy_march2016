@@ -22,6 +22,7 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    @pledge = Pledge.new
   end
 
   def index
