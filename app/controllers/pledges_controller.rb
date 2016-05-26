@@ -11,7 +11,7 @@ class PledgesController < ApplicationController
     @pledge.campaign = @campaign
     @pledge.user = current_user
     @pledge.save
-    redirect_to campaign_path(@campaign), notice: "Thank you for your pledge!"
+    redirect_to new_pledge_payment_path(@pledge), notice: "Thank you for your pledge!"
   end
 
   private
