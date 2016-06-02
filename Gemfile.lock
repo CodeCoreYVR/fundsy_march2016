@@ -82,6 +82,11 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     equalizer (0.0.10)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -183,6 +188,7 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     redis (3.3.0)
+    request_store (1.3.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -278,6 +284,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   cowsay
+  draper
   factory_girl_rails
   faker!
   geocoder

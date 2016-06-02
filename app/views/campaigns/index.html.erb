@@ -4,9 +4,7 @@
 
 <% @campaigns.each do |campaign| %>
   <div class="well">
-    <h3>
-      <%= link_to campaign.title.capitalize, campaign %>
-    </h3>
+    <%= campaign.decorate.h3_title %>
     <hr>
   </div>
 <% end %>
