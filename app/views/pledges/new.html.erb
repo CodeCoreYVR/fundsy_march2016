@@ -1,0 +1,5 @@
+<h1>Make a Pledge</h1>
+<%= simple_form_for [@campaign, @pledge] do |f| %>
+  <%= f.input :amount %>
+  <%= f.submit "Pledge", class: "btn btn-primary" %>
+<% end %>

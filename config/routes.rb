@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pledges, only: [] do
+    resources :payments, only: [:new, :create]
+  end
+
   resources :nearby_campaigns, only: [:index]
 
   namespace :api, defaults: {format: :json} do

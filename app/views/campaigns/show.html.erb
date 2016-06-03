@@ -9,7 +9,7 @@
   </div>
 
   <%= @campaign.publish_button %>
-
+  <%= link_to "Pledge", new_campaign_pledge_path(@campaign), class: "btn btn-primary" %>
 </div>
 <div class="col-md-4">
   <% @campaign.rewards.each do |rew| %>
