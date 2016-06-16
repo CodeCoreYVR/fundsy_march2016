@@ -3,8 +3,10 @@
 <h2>Recent Campaigns</h2>
 
 <% @campaigns.each do |campaign| %>
-  <div class="well">
-    <%= campaign.decorate.h3_title %>
-    <hr>
-  </div>
+  <%= cache campaign, expires_in: 1.day do %>
+    <div class="well">
+      <%= campaign.decorate.h3_title %> (<%= campaign.pledges.size %>)
+      <hr>
+    </div>
+  <% end %>
 <% end %>

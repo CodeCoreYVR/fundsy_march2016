@@ -25,7 +25,7 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    @campaigns = Campaign.order(:created_at)
+    @campaigns = Campaign.includes(:pledges).order(:created_at).references(:pledges)
     respond_to do |format|
       format.json { render json: @campaigns.to_json }
       format.html { render }

@@ -6,30 +6,17 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    customer = Stripe::Customer.create(
-                  description: "Customer for user id #{current_user.id}",
-                  source: params[:stripe_token]
-                )
-    # save data from Stripe
-    current_user.stripe_customer_id    = customer.id
-    current_user.stripe_card_type      = customer.sources.data[0].brand
-    current_user.stripe_card_last4     = customer.sources.data[0].last4
-    current_user.stripe_card_exp_month = customer.sources.data[0].exp_month
-    current_user.stripe_card_exp_year  = customer.sources.data[0].exp_year
+    service = Pledges::HandlePayment.new({ stripe_token: params[:stripe_token],
+                                           user:         current_user,
+                                           pledge:       @pledge
+                                        })
 
-    current_user.save
-
-    charge = Stripe::Charge.create(
-      amount: (@pledge.amount * 100).to_i,
-      currency: "cad",
-      customer: current_user.stripe_customer_id,
-      description: "Charge for pledge id #{@pledge.id}"
-    )
-
-    @pledge.txn_id = charge.id
-    @pledge.save
-
-    redirect_to @pledge.campaign, notice: "Thanks for completing the payment"
+    if service.call
+      redirect_to @pledge.campaign, notice: "Thanks for completing the payment"
+    else
+      flash[:alert] = "Error handling payment, please try again."
+      render :new
+    end
   end
 
   private

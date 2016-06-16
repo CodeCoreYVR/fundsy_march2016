@@ -21,6 +21,7 @@ module Fundsy
     # this will make decorators available in Rails console. They will normally
     # be available only for the Rails server.
     config.autoload_paths <<  Rails.root.join("app", "decorators")
+    config.autoload_paths <<  Rails.root.join("app", "services")
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
